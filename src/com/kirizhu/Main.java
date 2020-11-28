@@ -7,6 +7,7 @@ public class Main {
     public static void main(String[] args) {
 	    String[] input = { "aaaasd","a", "aab","aaa", "aaabcd", "ef", "cssssssd", "fdz", "kf", "zc", "lklklklklklklklkl", "l"};
         sortByAs(input);
+        recursiveOutput(9);
     }
     public static ArrayList<String> sortByAs(String[] input){
 
@@ -44,6 +45,18 @@ public class Main {
         asArray.addAll(noAsArray);
         System.out.println(asArray);
         return asArray;
+    }
+
+    public static ArrayList<Integer> ouputArray = new ArrayList<>();
+    public static ArrayList<Integer> recursiveOutput(Integer input){
+        if (input <=2){
+            ouputArray.add(input);
+            ouputArray.sort(Comparator.naturalOrder());
+            System.out.println(ouputArray);
+            return ouputArray;
+        }
+        ouputArray.add(input);
+        return recursiveOutput(input/2);
     }
 
 
