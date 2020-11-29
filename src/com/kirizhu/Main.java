@@ -6,13 +6,16 @@ public class Main {
 
     public static void main(String[] args) {
 	    String[] input = { "aaaasd","a", "aab","aaa", "aaabcd", "ef", "cssssssd", "fdz", "kf", "zc", "lklklklklklklklkl", "l"};
-        sortByAs(input);
-        recursiveOutput(9);
+        String[] strings = { "apple", "pie", "apple", "red", "red", "red"};
+        System.out.println(sortByAs(input));
+        System.out.println(recursiveOutput(9));
+        System.out.println(mostRepeatedString(strings));
     }
     public static ArrayList<String> sortByAs(String[] input){
 
         Map<String, Integer> asHashMap = new HashMap<>();
         ArrayList<String> noAsArray = new ArrayList<>();
+
         for (String value : input) {
             if (!value.contains("a")) {
                 noAsArray.add(value);
@@ -26,8 +29,8 @@ public class Main {
                 }
             }
         }
-        noAsArray.sort((a, b) -> Integer.compare(b.length(), a.length()));
 
+        noAsArray.sort((a, b) -> Integer.compare(b.length(), a.length()));
         Set<Map.Entry<String,Integer>> entrySet = asHashMap.entrySet();
         List<Map.Entry<String,Integer>> list = new ArrayList<>(entrySet);
 
@@ -41,9 +44,7 @@ public class Main {
         ArrayList<String> asArray = new ArrayList<>();
         list.forEach (s -> asArray.add(s.getKey()));
 
-
         asArray.addAll(noAsArray);
-        System.out.println(asArray);
         return asArray;
     }
 
@@ -52,12 +53,28 @@ public class Main {
         if (input <=2){
             ouputArray.add(input);
             ouputArray.sort(Comparator.naturalOrder());
-            System.out.println(ouputArray);
             return ouputArray;
         }
         ouputArray.add(input);
         return recursiveOutput(input/2);
     }
 
-
+    public static String mostRepeatedString(String[] input){
+        Map<String, Integer> stringIntegerHashMap = new HashMap<>();
+        int mostRepeats = 0;
+        String answer = "";
+        for (String s : input) {
+            if (!stringIntegerHashMap.containsKey(s)) {
+                stringIntegerHashMap.put(s, 1);
+            } else {
+                int oldValue = stringIntegerHashMap.get(s);
+                stringIntegerHashMap.replace(s, oldValue, oldValue + 1);
+            }
+            if (stringIntegerHashMap.get(s) > mostRepeats) {
+                mostRepeats = stringIntegerHashMap.get(s);
+                answer = s;
+            }
+        }
+        return answer;
+    }
 }
