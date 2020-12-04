@@ -22,10 +22,9 @@ public class Main {
                         numberOfAs++;
                         asHashMap.put(value, numberOfAs);
                     }
-                    asHashMap.put(value, numberOfAs);
                 }
+            asHashMap.put(value, numberOfAs);
         }
-
         Set<Map.Entry<String,Integer>> entrySet = asHashMap.entrySet();
         List<Map.Entry<String,Integer>> list = new ArrayList<>(entrySet);
 
@@ -35,7 +34,6 @@ public class Main {
             }
             return o2.getValue().compareTo(o1.getValue());
         });
-
         ArrayList<String> asArray = new ArrayList<>();
         list.forEach (s -> asArray.add(s.getKey()));
 
