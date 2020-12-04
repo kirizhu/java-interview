@@ -14,23 +14,18 @@ public class Main {
     public static ArrayList<String> sortByAs(String[] input){
 
         Map<String, Integer> asHashMap = new HashMap<>();
-        ArrayList<String> noAsArray = new ArrayList<>();
 
         for (String value : input) {
-            if (!value.contains("a")) {
-                noAsArray.add(value);
-            } else {
                 int numberOfAs = 0;
                 for (int j = 0; j < value.length(); j++) {
                     if (value.charAt(j) == 'a') {
                         numberOfAs++;
                         asHashMap.put(value, numberOfAs);
                     }
+                    asHashMap.put(value, numberOfAs);
                 }
-            }
         }
 
-        noAsArray.sort((a, b) -> Integer.compare(b.length(), a.length()));
         Set<Map.Entry<String,Integer>> entrySet = asHashMap.entrySet();
         List<Map.Entry<String,Integer>> list = new ArrayList<>(entrySet);
 
@@ -44,7 +39,6 @@ public class Main {
         ArrayList<String> asArray = new ArrayList<>();
         list.forEach (s -> asArray.add(s.getKey()));
 
-        asArray.addAll(noAsArray);
         return asArray;
     }
 
